@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Mi tienda levatado con node js y  express",
   "devDependencies": {
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
