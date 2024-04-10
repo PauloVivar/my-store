@@ -2,6 +2,7 @@
 // PS C:\Users\admin\dev\my-store> npm i @faker-js/faker
 
 const express = require('express');
+const cors = require('cors');
 const routerApi = require('./routes');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');     //manipulacion de errores
 
@@ -15,12 +16,26 @@ const port = process.env.PORT || 3000;
 //Middleware: gestion de las APIs -> para el fun de metodo post(create)
 app.use(express.json());
 
+//cors
+const whitelist = ['http://localhost:8080', 'https://miapp.ec', 'http://localhost:3000/']
+const options = {
+  origin: (origin, callback) =>{
+    if(whitelist.includes(origin) || !origin){
+      callback(null, true);
+    }else{
+      callback(new Error('no permitido'));
+    }
+  }
+}
+
+app.use(cors(options));
+
 // definimos la rutas
 // tiene un callback que va a ejecutar la respuesta que enviemos al cliente.
 // el callback siempre tiene dos parámetros "req" y "res".
 
 app.get('/api', (req, res)=> {
-  res.send('Hola es mi server en express');
+  res.send('Hola es mi server de pruebas con node js - express');
 });
 
 app.get('/api/nueva-ruta', (req, res)=> {
@@ -39,8 +54,8 @@ app.listen(port, ()=>{
   console.log(`Listening at http://localhost:${port}`);
 });
 
-
-//module.exports = app;
+//vercel
+module.exports = app;
 
 // Antes de delegar responsabilidades ejemplo
 
