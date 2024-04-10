@@ -6,6 +6,7 @@ const { createProductSchema, updateProductSchema, getProductSchema } = require('
 
 const router = express.Router();
 
+
 const service = new ProductsService();
 
 //toda ruta que sea especifica debe ir antes de la ruta dinamica
